@@ -7,7 +7,7 @@ class DisplayHelper
 {
 protected:
   int m_max;
-  int m_currentNumber = 0;
+  int m_currentNumber;
   int concat(int a, int b)
   {
     return std::stoi(std::to_string(a) + std::to_string(b));
