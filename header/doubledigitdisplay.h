@@ -13,7 +13,6 @@ public:
   DoubleDigitDisplay(int max, int offsetL, int offsetR)
   { 
     this->setMax(max); 
-    this->m_currentNumber = 0;
     m_pDisplayL = new Display(offsetL);
     m_pDisplayR = new Display(offsetR);
   }
@@ -33,6 +32,14 @@ public:
     m_pDisplayR->Draw(window);
   }
 
+  void setCurrentNumber(int n) 
+  { 
+    m_currentNumber = n;
+    std::pair<int, int> no = split(n);
+
+    m_pDisplayL->setNumber(no.first);
+    m_pDisplayR->setNumber(no.second);
+  } 
   int getCurrentNumber() { return m_currentNumber; }
 
   pDisplay getLeftDisplay() { return m_pDisplayL; }
