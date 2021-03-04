@@ -58,6 +58,17 @@ Display::Display(int offset)
 void Display::Increment()
 {
   this->m_currentNumber = (this->m_currentNumber + 1) % 10;
+}
+
+void Display::setNumber(int n)
+{
+  if (n > 9 || n < 0) return;
+  
+  this->m_currentNumber = n;
+}
+
+void Display::Draw(sf::RenderWindow& window)
+{
   switch (this->m_currentNumber)
   {
     case 0:
@@ -160,17 +171,6 @@ void Display::Increment()
       this->m_segments[6].Hide();
       break;
   }
-}
-
-void Display::setNumber(int n)
-{
-  if (n > 9 || n < 0) return;
-  
-  this->m_currentNumber = n;
-}
-
-void Display::Draw(sf::RenderWindow& window)
-{
   for (Segment seg : this->m_segments)
     window.draw(seg);
 }
