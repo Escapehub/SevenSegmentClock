@@ -27,6 +27,12 @@ public:
     m_pDisplayR->setNumber(no.second);
   }
 
+  void Draw(sf::RenderWindow& window)
+  {
+    m_pDisplayL->Draw(window);
+    m_pDisplayR->Draw(window);
+  }
+
   int getCurrentNumber() { return m_currentNumber; }
 
   pDisplay getLeftDisplay() { return m_pDisplayL; }
