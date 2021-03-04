@@ -3,7 +3,7 @@
 
 int main()
 {
-  sf::RenderWindow window(sf::VideoMode(1920, 1080), "Clock");
+  sf::RenderWindow window(sf::VideoMode(1500, 400), "Clock");
   Timer t = Timer();
   pDoubleDigitDisplay hours = new DoubleDigitDisplay(24, 0, 255);
   pDoubleDigitDisplay minutes = new DoubleDigitDisplay(60, 500, 750);
