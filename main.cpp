@@ -1,15 +1,11 @@
-#include "header/display.h"
-
-int concat(int, int);
+#include "header/doubledigitdisplay.h"
 
 int main()
 {
   sf::RenderWindow window(sf::VideoMode(1920, 1080), "Clock");
-  Display minutes1(500);
-  Display minutes2(750);
+  pDoubleDigitDisplay minutes = new DoubleDigitDisplay(60, 500, 750);
+  pDoubleDigitDisplay hours = new DoubleDigitDisplay(24, 0, 255);
   
-  Display hours1(0);
-  Display hours2(255);
   while (window.isOpen())
   {
     sf::Event event;
@@ -22,37 +18,21 @@ int main()
       {
         if (event.key.code == sf::Keyboard::Enter)
         {
-          minutes2.Increment();
-          if (minutes2.getCurrentNumber() == 9)
-            minutes1.Increment();
+          minutes->Increment();
 
-          if (concat(minutes1.getCurrentNumber(), minutes2.getCurrentNumber())  == 59)
-          {
-              hours2.Increment();
-              minutes1.Reset();
-              minutes2.Reset();
-          }
+          if (minutes->getCurrentNumber() == 0)
+            hours->Increment();
         }
       }
     }
-
     window.clear();
-    hours1.Draw(window);
-    hours2.Draw(window);
-    minutes1.Draw(window);
-    minutes2.Draw(window);
+    minutes->getLeftDisplay()->Draw(window);
+    minutes->getRightDisplay()->Draw(window);
+
+    hours->getLeftDisplay()->Draw(window);
+    hours->getRightDisplay()->Draw(window);
     window.display();
   }
 
   return 0;
-}
-
-int concat(int a, int b)
-{
-  std::string as = std::to_string(a);
-  std::string bs = std::to_string(b);
-
-  std::string abs = as + bs;
-
-  return std::stoi(abs);
 }
