@@ -1,5 +1,8 @@
 #include "display.h"
 
+#ifndef __DISPLAYHELPER__
+#define __DISPLAYHELPER__
+
 class DisplayHelper
 {
 protected:
@@ -11,8 +14,14 @@ protected:
   }
   std::pair<int, int> split(int a)
   {
-    std::string sa = std::to_string(a);
-    return std::pair<int, int>(sa[0], sa[1]);
+    if (std::to_string(a).size() == 1)
+      return std::pair<int, int>(0, a);
+    else 
+    {
+      int digit = a % 10;
+      a /= 10;
+      return std::pair<int, int>(a, digit);
+    }
   }
 public:
   void setMax(int m) { this->m_max = m; }
@@ -20,3 +29,5 @@ public:
 
   virtual void Increment() {}
 };
+
+#endif
