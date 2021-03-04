@@ -24,4 +24,6 @@ public:
   void Reset();
 };
 
+typedef Display* pDisplay;
+
 #endif //!__DISPLAY__
