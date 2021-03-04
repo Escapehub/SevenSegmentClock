@@ -162,6 +162,13 @@ void Display::Increment()
   }
 }
 
+void Display::setNumber(int n)
+{
+  if (n > 9 || n < 0) return;
+  
+  this->m_currentNumber = n;
+}
+
 void Display::Draw(sf::RenderWindow& window)
 {
   for (Segment seg : this->m_segments)
@@ -171,4 +178,11 @@ void Display::Draw(sf::RenderWindow& window)
 void Display::Reset()
 {
   this->m_currentNumber = 0;
+  this->m_segments[0].Show();
+  this->m_segments[1].Show();
+  this->m_segments[2].Show();
+  this->m_segments[3].Hide();
+  this->m_segments[4].Show();
+  this->m_segments[5].Show();
+  this->m_segments[6].Show();
 }

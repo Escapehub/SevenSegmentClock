@@ -15,6 +15,8 @@ public:
   
   void Increment();
 
+  void setNumber(int);
+
   void Draw(sf::RenderWindow&);
 
   int getCurrentNumber() { return this->m_currentNumber; }
