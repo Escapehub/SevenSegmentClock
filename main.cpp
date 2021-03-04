@@ -3,9 +3,11 @@
 int main()
 {
   sf::RenderWindow window(sf::VideoMode(1920, 1080), "Clock");
-  pDoubleDigitDisplay minutes = new DoubleDigitDisplay(60, 500, 750);
-  pDoubleDigitDisplay hours = new DoubleDigitDisplay(24, 0, 255);
   
+  pDoubleDigitDisplay hours = new DoubleDigitDisplay(24, 0, 255);
+  pDoubleDigitDisplay minutes = new DoubleDigitDisplay(60, 500, 750);
+  pDoubleDigitDisplay seconds = new DoubleDigitDisplay(60, 1000, 1250);
+
   while (window.isOpen())
   {
     sf::Event event;
@@ -18,19 +20,23 @@ int main()
       {
         if (event.key.code == sf::Keyboard::Enter)
         {
-          minutes->Increment();
+          seconds->Increment();
+          if (seconds->getCurrentNumber() == 0)
+          {
+            minutes->Increment();
 
-          if (minutes->getCurrentNumber() == 0)
-            hours->Increment();
+            if (minutes->getCurrentNumber() == 0)
+              hours->Increment();
+          }
         }
       }
     }
     window.clear();
-    minutes->getLeftDisplay()->Draw(window);
-    minutes->getRightDisplay()->Draw(window);
+    hours->Draw(window);
 
-    hours->getLeftDisplay()->Draw(window);
-    hours->getRightDisplay()->Draw(window);
+    minutes->Draw(window);
+
+    seconds->Draw(window);
     window.display();
   }
 
