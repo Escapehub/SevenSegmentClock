@@ -1,12 +1,33 @@
 #include "header/doubledigitdisplay.h"
+#include "header/timer.h"
 
 int main()
 {
   sf::RenderWindow window(sf::VideoMode(1920, 1080), "Clock");
-  
+  Timer t = Timer();
   pDoubleDigitDisplay hours = new DoubleDigitDisplay(24, 0, 255);
   pDoubleDigitDisplay minutes = new DoubleDigitDisplay(60, 500, 750);
   pDoubleDigitDisplay seconds = new DoubleDigitDisplay(60, 1000, 1250);
+
+  std::time_t now = std::time(nullptr);
+  std::tm tt = *std::localtime(std::addressof(now));
+
+  hours->setCurrentNumber(tt.tm_hour);
+  minutes->setCurrentNumber(tt.tm_min);
+  seconds->setCurrentNumber(tt.tm_sec);
+
+  printf("%d:%d:%d", tt.tm_hour, tt.tm_min, tt.tm_sec);
+
+  t.setInterval([&]() {
+    seconds->Increment();
+    if (seconds->getCurrentNumber() == 0)
+    {
+      minutes->Increment();
+
+      if (minutes->getCurrentNumber() == 0)
+        hours->Increment();
+    }
+  }, 1000);
 
   while (window.isOpen())
   {
@@ -15,27 +36,11 @@ int main()
     {
       if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         window.close();
-
-      if (event.type == sf::Event::KeyPressed)
-      {
-        if (event.key.code == sf::Keyboard::Enter)
-        {
-          seconds->Increment();
-          if (seconds->getCurrentNumber() == 0)
-          {
-            minutes->Increment();
-
-            if (minutes->getCurrentNumber() == 0)
-              hours->Increment();
-          }
-        }
-      }
     }
+
     window.clear();
     hours->Draw(window);
-
     minutes->Draw(window);
-
     seconds->Draw(window);
     window.display();
   }
