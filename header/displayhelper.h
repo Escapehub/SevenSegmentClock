@@ -30,4 +30,4 @@ public:
   virtual void Increment() {}
 };
 
-#endif
+#endif //!__DISPLAYHELPER__
