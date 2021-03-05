@@ -5,6 +5,7 @@ int main()
 {
   sf::RenderWindow window(sf::VideoMode(1500, 400), "Clock");
   Timer t = Timer();
+  
   pDoubleDigitDisplay hours = new DoubleDigitDisplay(24, 0, 255);
   pDoubleDigitDisplay minutes = new DoubleDigitDisplay(60, 500, 750);
   pDoubleDigitDisplay seconds = new DoubleDigitDisplay(60, 1000, 1250);
@@ -15,8 +16,6 @@ int main()
   hours->setCurrentNumber(tt.tm_hour);
   minutes->setCurrentNumber(tt.tm_min);
   seconds->setCurrentNumber(tt.tm_sec);
-
-  printf("%d:%d:%d", tt.tm_hour, tt.tm_min, tt.tm_sec);
 
   t.setInterval([&]() {
     seconds->Increment();
