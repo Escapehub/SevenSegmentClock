@@ -1,5 +1,25 @@
+/*
+  +---------------------------------------------------+
+  |                                                   |
+  | @file segment.h                                   |
+  |                                                   |
+  | @brief Defines controls for a segment that makes  |
+  |     up one of 7 in a display                      |
+  |                                                   |
+  +---------------------------------------------------+
+*/
+
+#ifndef __SEGMENT__
+#define __SEGMENT__
+
+////////////////////
+// Headers
+////////////////////
 #include <SFML/Graphics.hpp>
 
+////////////////////
+// Enum definitions
+////////////////////
 #define POS_TOP_MIDDLE Segment::Pos::TOP_MIDDLE
 #define POS_TOP_RIGHT Segment::Pos::TOP_RIGHT
 #define POS_TOP_LEFT Segment::Pos::TOP_LEFT
@@ -8,8 +28,6 @@
 #define POS_BOTTOM_LEFT Segment::Pos::BOTTOM_LEFT
 #define POS_BOTTOM_MIDDLE Segment::Pos::BOTTOM_MIDDLE
 
-#ifndef __SEGMENT__
-#define __SEGMENT__
 
 class Segment : public sf::RectangleShape
 {
@@ -29,10 +47,23 @@ private:
   Pos m_currentPos;
 
 public:
+
+  /**
+   * Constructor
+   * 
+   * @param Pos - position to set segment too
+   * @param int - offset
+   */
   Segment(Pos, int = 0);
 
+  /**
+   * Hide current segment
+   */
   void Hide();
 
+  /**
+   * Show current segment
+   */
   void Show();
 };
 
