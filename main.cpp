@@ -1,5 +1,5 @@
-#include "header/doubledigitdisplay.h"
-#include "header/timer.h"
+#include "src/doubledigitdisplay.h"
+#include "src/timer.h"
 
 int main()
 {

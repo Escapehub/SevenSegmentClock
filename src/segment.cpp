@@ -1,4 +1,4 @@
-#include "../header/segment.h"
+#include "segment.h"
 
 Segment::Segment(Pos p, int offset)
 {
