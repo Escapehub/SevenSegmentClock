@@ -6,7 +6,12 @@ A seven segment display clock in C++ & SFML
 
 
 ## Compile
+```
+mkdir build
 
-### Linux
+cd build
 
-g++ main.cpp source/* -o sevensegment -lsfml-graphics -lsfml-window -lsfml-system -pthread
+cmake ..
+
+make
+```
